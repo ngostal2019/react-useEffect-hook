@@ -1,23 +1,22 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
+  const [toggle, setToggle] = useState(false)
+  
+  const clickHandler = () => {
+    setToggle(!toggle)
+  }
+
+  useEffect(() => {
+    document.title = toggle ? "Welcome to Little Lemon" : "Using the useEffect hook"
+  }, [toggle])
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App-header">
+      <h1>Using the useEffect hook</h1>
+      <button onClick={clickHandler}>Toggle message</button>
+      {toggle && <h2>Welcome to Little Lemon</h2>}
     </div>
   );
 }
